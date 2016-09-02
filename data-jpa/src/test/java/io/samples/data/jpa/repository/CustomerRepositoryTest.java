@@ -38,4 +38,17 @@ public class CustomerRepositoryTest {
 
         assertNull("entity should not exist", repo.findByFirstName("Bob"));
     }
+
+    @Test
+    public void testFindByFirstAndLastName() throws Exception {
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setFirstName("John");
+        customer.setLastName("Smith");
+
+        repo.save(customer);
+
+        Customer actualCustomer = repo.findByFirstNameAndLastName("John", "Smith");
+        assertEquals(customer, actualCustomer);
+    }
 }
